@@ -1,3 +1,32 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
+// lib
+const request = require('superagent');
+
+// element
+let checkBtn = document.getElementById('check-btn');
+let symbolInput = document.getElementById('symbol-input');
+
+// event
+checkBtn.addEventListener('click', () => {
+	let symbol = symbolInput.value;
+	request
+	.get(`https://www.google.com/finance/info?q=${symbol}`)
+	.end((err, res) => {
+		if (err) {
+			console.log('bad request');
+		} else {
+			res = JSON.parse(res.text.replace('// ', ''));
+			console.log(res);
+		}
+		clear('symbol-input');
+	});
+});
+
+// helper
+function clear(identity) {
+	let domById = document.getElementById(identity);
+	let domByClass = document.getElementsByClassName(identity)[0];
+	let dom = domById ? domById : domByClass;
+	if (dom.value) {
+		dom.value = '';
+	}
+}
