@@ -16,6 +16,11 @@ checkBtn.addEventListener('click', () => {
 		} else {
 			res = JSON.parse(res.text.replace('// ', ''));
 			console.log(res);
+			// cp - day ratio
+			// l - price
+			// c - delta price
+			// lt_dts - timestamp
+			// pcls_fix - start price
 		}
 		clear('symbol-input');
 	});
