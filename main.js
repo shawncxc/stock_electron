@@ -11,5 +11,5 @@ let mainWindow
 app.on('ready', () => {
   let mainWindow = new BrowserWindow({width: 800, height: 200})
   mainWindow.webContents.openDevTools()
-  mainWindow.loadURL(`file://${__dirname}/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/build/index.html`)
 })
