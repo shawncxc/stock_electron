@@ -2,13 +2,28 @@
  * Base webpack config used across other specific configs
  */
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './app/src/renderer.js',
   output: {
-    filename: 'bundle.js',
+    filename: '[chunkhash].js',
     path: path.resolve(__dirname, 'build')
   },
+  devtool: 'inline-source-map',
+  plugins: [
+    new CleanWebpackPlugin(['build']),
+    new HtmlWebpackPlugin(),
+    // function() {
+    //   this.plugin('done', function(stats) {
+    //     require('fs').writeFileSync(
+    //       path.join(__dirname, 'build', 'stats.json'),
+    //       JSON.stringify(stats.toJson())
+    //     );
+    //   });
+    // }
+  ],
   module: {
     rules: [
       // style
